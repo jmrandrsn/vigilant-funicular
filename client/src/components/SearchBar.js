@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, onApi }) {
 	const [value, setValue] = useState('');
 
 	const handleSearch = (e) => {
 		e.preventDefault();
 		onSearch(value);
+		onApi(value);
 		setValue('');
 		console.log(value);
 	};
