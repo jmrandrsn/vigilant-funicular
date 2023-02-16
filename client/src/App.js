@@ -26,8 +26,11 @@ function App() {
 
 	return (
 		<div className="App">
-			<header className="App-header">Weather App</header>
-			<SearchBar onSearch={(value) => setCity(value)} onApi={fetchData} />
+			<header className="App-header">
+				<h1>Weather App</h1>
+				<SearchBar onSearch={(value) => setCity(value)} onApi={fetchData} />
+			</header>
+
 			<WeatherCard city={city} />
 			{weatherData && <WeatherCard data={weatherData} />}
 			{/* //Instead of Passing the city name I want to
