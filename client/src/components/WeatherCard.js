@@ -1,8 +1,26 @@
 import '../App.css';
 import { useState, useEffect } from 'react';
+// import sunnyIcon from '../icons/sunny.svg';
+// import rainIcon from '../icons/rain.svg';
+// import snowIcon from '../icons/snow.svg';
 
 function WeatherCard({ data }) {
 	if (!data) return null;
+
+	// let icon;
+	// switch (data.list[9].weather[0].description) {
+	// 	case 'sunny':
+	// 		icon = sunnyIcon;
+	// 		break;
+	// 	case 'rain':
+	// 		icon = rainIcon;
+	// 		break;
+	// 	case 'snow':
+	// 		icon = snowIcon;
+	// 		break;
+	// 	default:
+	// 		icon = null;
+	// }
 
 	return (
 		<div className="weatherCard">
@@ -30,6 +48,10 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[9].main.temp_max}&deg; </p>
+						{/* <img src={icon} alt={data.list[9].weather[0].description} /> */}
+						<img
+							src={`http://openweathermap.org/img/wn/${data.list[9].weather[0].icon}.png`}
+						></img>
 						<p> {data.list[9].weather[0].description} </p>
 					</div>
 					<div>
@@ -38,6 +60,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[17].main.temp_max}&deg; </p>
+						<img
+							src={`http://openweathermap.org/img/wn/${data.list[17].weather[0].icon}.png`}
+						></img>
 						<p> {data.list[17].weather[0].description} </p>
 					</div>
 					<div>
@@ -46,6 +71,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[25].main.temp_max}&deg; </p>
+						<img
+							src={`http://openweathermap.org/img/wn/${data.list[25].weather[0].icon}.png`}
+						></img>
 						<p> {data.list[25].weather[0].description} </p>
 					</div>
 					<div>
@@ -54,6 +82,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[33].main.temp_max}&deg; </p>
+						<img
+							src={`http://openweathermap.org/img/wn/${data.list[33].weather[0].icon}.png`}
+						></img>
 						<p> {data.list[33].weather[0].description} </p>
 					</div>
 				</div>
