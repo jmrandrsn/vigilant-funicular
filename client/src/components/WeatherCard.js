@@ -1,4 +1,5 @@
 import '../App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState, useEffect } from 'react';
 // import sunnyIcon from '../icons/sunny.svg';
 // import rainIcon from '../icons/rain.svg';
@@ -7,20 +8,84 @@ import { useState, useEffect } from 'react';
 function WeatherCard({ data }) {
 	if (!data) return null;
 
-	// let icon;
-	// switch (data.list[9].weather[0].description) {
-	// 	case 'sunny':
-	// 		icon = sunnyIcon;
-	// 		break;
-	// 	case 'rain':
-	// 		icon = rainIcon;
-	// 		break;
-	// 	case 'snow':
-	// 		icon = snowIcon;
-	// 		break;
-	// 	default:
-	// 		icon = null;
-	// }
+	const getIconClass = (weatherDescription) => {
+		switch (weatherDescription) {
+			case 'clear sky':
+				return 'fas fa-sun';
+			case 'few clouds':
+				return 'fas fa-clouds';
+			case 'scattered clouds':
+				return 'fas fa-clouds-sun';
+			case 'broken clouds':
+				return 'fas fa-clouds';
+			case 'shower rain':
+				return 'fas fa-cloud-showers';
+			case 'rain':
+				return 'fas fa-cloud-showers-heavy';
+			case 'thunderstorm':
+				return 'fas fa-bolt';
+			case 'thunderstorm with light rain':
+			case 'thunderstorm with rain':
+			case 'thunderstorm with heavy rain':
+			case 'light thunderstorm':
+			case 'heavy thunderstorm':
+			case 'ragged thunderstorm':
+			case 'thunderstorm with light drizzle':
+			case 'thunderstorm with drizzle':
+			case 'thunderstorm with heavy drizzle':
+				return 'fas fa-bolt';
+			case 'light intensity drizzle':
+			case 'drizzle':
+			case 'heavy intensity drizzle':
+			case 'light intensity drizzle rain':
+			case 'drizzle rain':
+			case 'heavy intensity drizzle rain':
+			case 'shower rain and drizzle':
+			case 'heavy shower rain and drizzle':
+			case 'shower drizzle':
+				return 'fas fa-cloud-drizzle';
+			case 'light rain':
+			case 'moderate rain':
+			case 'heavy intensity rain':
+			case 'very heavy rain':
+			case 'extreme rain':
+				return 'fas fa-cloud-rain';
+			case 'freezing rain':
+				return 'fas fa-snowflake';
+			case 'light intensity shower rain':
+			case 'shower rain':
+			case 'heavy intensity shower rain':
+			case 'ragged shower rain':
+				return 'fas fa-cloud-showers-heavy';
+			case 'light snow':
+			case 'snow':
+			case 'heavy snow':
+			case 'sleet':
+			case 'light shower sleet':
+			case 'shower sleet':
+			case 'light rain and snow':
+			case 'rain and snow':
+			case 'light shower snow':
+			case 'shower snow':
+			case 'heavy shower snow':
+				return 'fas fa-snowflake';
+			case 'mist':
+			case 'smoke':
+			case 'haze':
+			case 'sand/dust whirls':
+			case 'fog':
+			case 'sand':
+			case 'dust':
+			case 'volcanic ash':
+			case 'squalls':
+			case 'overcast clouds':
+				return 'fas fa-smog';
+			case 'tornado':
+				return 'fas fa-smog';
+			default:
+				return 'fas fa-question';
+		}
+	};
 
 	return (
 		<div className="weatherCard">
@@ -49,9 +114,9 @@ function WeatherCard({ data }) {
 						})}
 						<p> {data.list[9].main.temp_max}&deg; </p>
 						{/* <img src={icon} alt={data.list[9].weather[0].description} /> */}
-						<img
-							src={`http://openweathermap.org/img/wn/${data.list[9].weather[0].icon}.png`}
-						></img>
+						<i
+							className={getIconClass(data.list[9].weather[0].description)}
+						></i>
 						<p> {data.list[9].weather[0].description} </p>
 					</div>
 					<div>
@@ -60,9 +125,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[17].main.temp_max}&deg; </p>
-						<img
-							src={`http://openweathermap.org/img/wn/${data.list[17].weather[0].icon}.png`}
-						></img>
+						<i
+							className={getIconClass(data.list[17].weather[0].description)}
+						></i>
 						<p> {data.list[17].weather[0].description} </p>
 					</div>
 					<div>
@@ -71,9 +136,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[25].main.temp_max}&deg; </p>
-						<img
-							src={`http://openweathermap.org/img/wn/${data.list[25].weather[0].icon}.png`}
-						></img>
+						<i
+							className={getIconClass(data.list[25].weather[0].description)}
+						></i>
 						<p> {data.list[25].weather[0].description} </p>
 					</div>
 					<div>
@@ -82,9 +147,9 @@ function WeatherCard({ data }) {
 							day: 'numeric',
 						})}
 						<p> {data.list[33].main.temp_max}&deg; </p>
-						<img
-							src={`http://openweathermap.org/img/wn/${data.list[33].weather[0].icon}.png`}
-						></img>
+						<i
+							className={getIconClass(data.list[33].weather[0].description)}
+						></i>
 						<p> {data.list[33].weather[0].description} </p>
 					</div>
 				</div>
