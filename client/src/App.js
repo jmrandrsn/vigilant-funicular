@@ -27,14 +27,19 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1>Weather App</h1>
-				<SearchBar onSearch={(value) => setCity(value)} onApi={fetchData} />
+				<h1 className="title">Vigilant Funicular</h1>
+				<SearchBar
+					className="searchBar"
+					onSearch={(value) => setCity(value)}
+					onApi={fetchData}
+				/>
 			</header>
-
-			<WeatherCard city={city} />
-			{weatherData && <WeatherCard data={weatherData} />}
-			{/* //Instead of Passing the city name I want to
+			<div className="weather_container">
+				<WeatherCard city={city} />
+				{weatherData && <WeatherCard data={weatherData} />}
+				{/* //Instead of Passing the city name I want to
 			pass the entire API response here */}
+			</div>
 		</div>
 	);
 }
