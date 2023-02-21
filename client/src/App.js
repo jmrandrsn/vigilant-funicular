@@ -10,7 +10,6 @@ function App() {
 	const fetchData = async (option) => {
 		const lat = await option.coords.lat;
 		const lon = await option.coords.lon;
-		// const city = await option.city;
 		console.log(lon);
 		console.log(lat);
 
@@ -20,7 +19,6 @@ function App() {
 		const forecastData = await forecastResponse.json();
 
 		console.log(forecastData);
-		setCity(option.city);
 		console.log(city);
 
 		setWeatherData(forecastData);
@@ -29,11 +27,10 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1 className="title">Vigilant Funicular</h1>
+				<h1 className="title">Vigilant</h1>
 				<SearchBar onSearch={(value) => setCity(value)} onApi={fetchData} />
 			</header>
 			<div className="weather_container">
-				{/* {city && <WeatherCard city={city} />} */}
 				{weatherData && <WeatherCard data={weatherData} />}
 			</div>
 		</div>

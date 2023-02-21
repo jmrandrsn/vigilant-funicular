@@ -1,9 +1,6 @@
 import '../App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState, useEffect } from 'react';
-// import sunnyIcon from '../icons/sunny.svg';
-// import rainIcon from '../icons/rain.svg';
-// import snowIcon from '../icons/snow.svg';
 
 function WeatherCard({ data }) {
 	if (!data) return null;
@@ -13,11 +10,11 @@ function WeatherCard({ data }) {
 			case 'clear sky':
 				return 'fas fa-sun';
 			case 'few clouds':
-				return 'fas fa-clouds';
+				return 'fas fa-cloud';
 			case 'scattered clouds':
 				return 'fas fa-clouds-sun';
 			case 'broken clouds':
-				return 'fas fa-clouds';
+				return 'fas fa-cloud';
 			case 'shower rain':
 				return 'fas fa-cloud-showers';
 			case 'rain':
@@ -79,7 +76,7 @@ function WeatherCard({ data }) {
 			case 'volcanic ash':
 			case 'squalls':
 			case 'overcast clouds':
-				return 'fas fa-smog';
+				return 'fas fa-cloud';
 			case 'tornado':
 				return 'fas fa-smog';
 			default:
@@ -95,11 +92,21 @@ function WeatherCard({ data }) {
 				</h2>
 			</div>
 			<div className="description">
+				<h3>
+					{new Date(data.list[0].dt * 1000).toLocaleDateString('en-US', {
+						weekday: 'long',
+					})}
+				</h3>
+				<i
+					className={`${getIconClass(
+						data.list[0].weather[0].description,
+					)} fa-2x`}
+				></i>
 				<h6> {data.list[0].weather[0].description}</h6>
 			</div>
 
 			<div className="temperature">
-				<h1> {data.list[0].main.temp}&deg;F </h1>
+				<h1> {Math.round(data.list[0].main.temp)}&deg;F </h1>
 			</div>
 			<div className="pressure_humidity">
 				<h4>Pressure: {data.list[0].main.pressure} </h4>
@@ -108,45 +115,64 @@ function WeatherCard({ data }) {
 			<div className="five_day_forecast">
 				<div style={{ display: 'flex', justifyContent: 'space-around' }}>
 					<div>
+						<p>
+							{new Date(data.list[9].dt * 1000).toLocaleDateString('en-US', {
+								weekday: 'long',
+							})}
+						</p>
 						{new Date(data.list[9].dt * 1000).toLocaleDateString('en-US', {
 							month: 'numeric',
 							day: 'numeric',
 						})}
-						<p> {data.list[9].main.temp_max}&deg; </p>
-						{/* <img src={icon} alt={data.list[9].weather[0].description} /> */}
+						<p> {Math.round(data.list[9].main.temp_max)}&deg;F </p>
 						<i
 							className={getIconClass(data.list[9].weather[0].description)}
 						></i>
 						<p> {data.list[9].weather[0].description} </p>
 					</div>
 					<div>
+						<p>
+							{new Date(data.list[17].dt * 1000).toLocaleDateString('en-US', {
+								weekday: 'long',
+							})}
+						</p>
 						{new Date(data.list[17].dt * 1000).toLocaleDateString('en-US', {
 							month: 'numeric',
 							day: 'numeric',
 						})}
-						<p> {data.list[17].main.temp_max}&deg; </p>
+						<p> {Math.round(data.list[17].main.temp_max)}&deg;F </p>
 						<i
 							className={getIconClass(data.list[17].weather[0].description)}
 						></i>
 						<p> {data.list[17].weather[0].description} </p>
 					</div>
 					<div>
+						<p>
+							{new Date(data.list[25].dt * 1000).toLocaleDateString('en-US', {
+								weekday: 'long',
+							})}
+						</p>
 						{new Date(data.list[25].dt * 1000).toLocaleDateString('en-US', {
 							month: 'numeric',
 							day: 'numeric',
 						})}
-						<p> {data.list[25].main.temp_max}&deg; </p>
+						<p> {Math.round(data.list[25].main.temp_max)}&deg;F </p>
 						<i
 							className={getIconClass(data.list[25].weather[0].description)}
 						></i>
 						<p> {data.list[25].weather[0].description} </p>
 					</div>
 					<div>
+						<p>
+							{new Date(data.list[33].dt * 1000).toLocaleDateString('en-US', {
+								weekday: 'long',
+							})}
+						</p>
 						{new Date(data.list[33].dt * 1000).toLocaleDateString('en-US', {
 							month: 'numeric',
 							day: 'numeric',
 						})}
-						<p> {data.list[33].main.temp_max}&deg; </p>
+						<p> {Math.round(data.list[33].main.temp_max)}&deg;F </p>
 						<i
 							className={getIconClass(data.list[33].weather[0].description)}
 						></i>
