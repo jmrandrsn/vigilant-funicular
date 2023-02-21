@@ -1,26 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { GEO_API } from '../utils/api';
+import { AsyncPaginate } from 'react-select-async-paginate';
 
 function SearchBar({ onSearch, onApi }) {
 	const [value, setValue] = useState('');
 
-	const handleSearch = (e) => {
-		e.preventDefault();
-		onSearch(value);
-		onApi(value);
-		setValue('');
-		console.log(value);
+	const loadOptions = async (inputValue, _prevOptions, _currentPage) => {
+		const response = await fetch(`${GEO_API.url}?namePrefix=${inputValue}`, {
+			method: GEO_API.method,
+			headers: GEO_API.headers,
+		});
+
+		const data = await response.json();
+		const options = data.data.map((search) => ({
+			value: search.city + ', ' + search.region,
+			label: search.city + ', ' + search.region,
+			coords: {
+				lat: search.latitude,
+				lon: search.longitude,
+			},
+			city: search.city,
+		}));
+
+		return {
+			options,
+			hasMore: false,
+			additional: {
+				page: _currentPage + 1,
+			},
+		};
+	};
+
+	const handleChange = (options) => {
+		console.log(options);
+		onSearch(options.city);
+		onApi(options);
+		console.log(options.city);
 	};
 
 	return (
 		<div>
-			<form onSubmit={handleSearch}>
-				<input
-					type="text"
-					value={value}
-					onChange={(e) => setValue(e.target.value)}
-					placeholder="Search for a city"
-				/>
-			</form>
+			<AsyncPaginate
+				value={value}
+				debounceTimeout={600}
+				loadOptions={loadOptions}
+				placeholder="Search for a city"
+				onChange={handleChange}
+			/>
 		</div>
 	);
 }
