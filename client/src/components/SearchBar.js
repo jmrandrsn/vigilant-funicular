@@ -31,18 +31,11 @@ function SearchBar({ onSearch, onApi }) {
 		};
 	};
 
-	// const handleSearch = (newValue) => {
-	// 	setValue(newValue);
-	// 	onSearch(newValue);
-	// };
-
 	const handleChange = (options) => {
 		console.log(options);
 		onSearch(options.city);
 		onApi(options);
 		console.log(options.city);
-		// onApi(selectedOption.search);
-		// onSearch(selectedOption.city);
 	};
 
 	return (
@@ -53,7 +46,6 @@ function SearchBar({ onSearch, onApi }) {
 				loadOptions={loadOptions}
 				placeholder="Search for a city"
 				onChange={handleChange}
-				// onMenuClose={() => console.log('onMenuClose')}
 			/>
 		</div>
 	);

@@ -15,14 +15,15 @@ function App() {
 		console.log(lat);
 
 		const forecastResponse = await fetch(
-			`${API_URL}&lat=${lat}&lon=${lon}&appid=${key}&units=imperial`,
+			`${API_URL}lat=${lat}&lon=${lon}&appid=${key}&units=imperial`,
 		);
 		const forecastData = await forecastResponse.json();
 
 		console.log(forecastData);
-		// setCity(option.city);
+		setCity(option.city);
+		console.log(city);
 
-		// setWeatherData(forecastData);
+		setWeatherData(forecastData);
 	};
 
 	return (
@@ -32,7 +33,7 @@ function App() {
 				<SearchBar onSearch={(value) => setCity(value)} onApi={fetchData} />
 			</header>
 			<div className="weather_container">
-				{city && <WeatherCard city={city} />}
+				{/* {city && <WeatherCard city={city} />} */}
 				{weatherData && <WeatherCard data={weatherData} />}
 			</div>
 		</div>
